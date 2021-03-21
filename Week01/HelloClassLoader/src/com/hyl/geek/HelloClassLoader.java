@@ -24,14 +24,13 @@ public class HelloClassLoader extends ClassLoader {
     @Override
     protected Class<?> findClass(String name) {
 
-        BufferedInputStream in = null;
-        byte[] temp = new byte[1024];
-        int size = 0;
+        FileInputStream in = null;
         ByteArrayOutputStream out = new ByteArrayOutputStream(1024);
+        int tempbyte = 0;
         try {
-            in = new BufferedInputStream(new FileInputStream("Hello.xlass"));
-            while ((size = in.read(temp)) != -1) {
-                out.write(temp, 0, 255-size);
+            in = new FileInputStream("Hello.xlass");
+            while ((tempbyte = in.read()) != -1) {
+               out.write(255 - tempbyte);
             }
 
             in.close();
