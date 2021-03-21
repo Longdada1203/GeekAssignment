@@ -9,7 +9,7 @@ public class HelloClassLoader extends ClassLoader {
         try {
             //Find class
             Class<?> clazz = new HelloClassLoader().findClass("Hello");
-            
+
             //Reflect invoke methond
             Method method= clazz.getMethod("hello");
             method.invoke(clazz.newInstance());
