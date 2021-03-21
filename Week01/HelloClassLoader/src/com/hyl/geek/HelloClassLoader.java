@@ -7,7 +7,10 @@ import java.lang.reflect.Method;
 public class HelloClassLoader extends ClassLoader {
     public static void main(String[] args) {
         try {
+            //Find class
             Class<?> clazz = new HelloClassLoader().findClass("Hello");
+            
+            //Reflect invoke methond
             Method method= clazz.getMethod("hello");
             method.invoke(clazz.newInstance());
         } catch (NoSuchMethodException e) {
@@ -28,9 +31,11 @@ public class HelloClassLoader extends ClassLoader {
         ByteArrayOutputStream out = new ByteArrayOutputStream(1024);
         int tempbyte = 0;
         try {
+            //Load Hello.xlass file
             in = new FileInputStream("Hello.xlass");
             while ((tempbyte = in.read()) != -1) {
-               out.write(255 - tempbyte);
+                //Decode
+                out.write(255 - tempbyte);
             }
 
             in.close();
@@ -40,7 +45,7 @@ public class HelloClassLoader extends ClassLoader {
 
         byte[] content = out.toByteArray();
 
-
+        //Define class
         return defineClass(name,content,0,content.length);
     }
 }
