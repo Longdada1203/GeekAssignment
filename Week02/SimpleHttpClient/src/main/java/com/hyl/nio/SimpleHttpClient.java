@@ -18,7 +18,7 @@ public class SimpleHttpClient {
         HttpClient httpClient = new DefaultHttpClient();
 
         //Cteate Get function
-        HttpGet httpGet = new HttpGet("http://127.0.0.1:8801");
+        HttpGet httpGet = new HttpGet("http://127.0.0.1:8808/hyl");
         HttpResponse response = httpClient.execute(httpGet);
 
         //Parse response
